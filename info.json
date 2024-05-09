@@ -1,0 +1,90 @@
+{
+  "user_guide_file": "KAM App Guide.pdf",
+  "app_name": "KAM",
+  "app_version": "1_0",
+  "app_id": "016",
+  "version_id": "01610",
+  "validated_version_range": [
+    "3.10.0",
+    "4.1.0"
+  ],
+  "app_description": "Estimation of Knee Adduction Moment (KAM) from wearable IMUs during walking. Required: 7 <br> -Sensing (7): left foot (top of the foot, with switch pointing towards body), right foot (top of the foot, with switch pointing towards body), left shank (Midway between Femur Lateral Epicondyle and Fibula Apex of Lateral Malleolus), right shank (Midway between Femur Lateral Epicondyle and Fibula Apex of Lateral Malleolus), left thigh ( Midway between Femur Greater Trochanter and Femur Lateral Epicondyle), right thigh ( Midway between Femur Greater Trochanter and Femur Lateral Epicondyle), pelvis (Midway between Left and Right Anterior Superior Iliac Spine) ",
+  "parameters_setting": [
+    [
+      "Save Options",
+      {
+        "source": "save_mode",
+        "title": "Save Mode",
+        "type": "combo",
+        "validation": [
+          "csv",
+          "h5",
+          "xlsx"
+        ],
+        "description": "Save file in specified format"
+      }
+    ],
+    [
+      "User Info",
+      {
+        "source": "weight",
+        "title": "Subject Weight (Kg)",
+        "type": "float",
+        "validation": [
+          0,
+          200
+        ],
+        "description": "Subject Weight (Kg)"
+      },
+      {
+        "source": "height",
+        "title": "Subject Height (m)",
+        "type": "float",
+        "validation": [
+          0,
+          2.5
+        ],
+        "description": "Subject Height (m)"
+      }
+    ]
+  ],
+  "user_fields": [
+    {
+      "name": "time",
+      "data_type": "float",
+      "size": 1
+    },
+    {
+      "name": "weight_kg",
+      "data_type": "float",
+      "size": 1
+    },
+    {
+      "name": "height_meter",
+      "data_type": "float",
+      "size": 1
+    },
+    {
+      "name": "KAM",
+      "data_type": "float",
+      "size": 1
+    },
+    {
+      "name": "Stance_Flag",
+      "data_type": "int",
+      "size": 1
+    }
+  ],
+  "sensors": [
+    "L_FOOT",
+    "R_FOOT",
+    "R_SHANK",
+    "R_THIGH",
+    "WAIST",
+    "L_SHANK",
+    "L_THIGH"
+  ],
+  "feedback": [],
+  "pulse_length": 1,
+  "datarate": 100
+}
