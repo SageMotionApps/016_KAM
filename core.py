@@ -38,8 +38,8 @@ class Core(BaseApp):
     # and add the code in there. This function will be called before the
     # run_in_loop() function below.
     #############################################################
-    # def on_start_event(self):
-    #     print("In On Start Event")
+    # def on_start_event(self, start_time):
+    #     print("In On Start Event: {start_time}")
 
     ###########################################################
     # RUN APP IN LOOP
