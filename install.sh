@@ -8,7 +8,7 @@ sudo dpkg --add-architecture armhf
 sudo apt-get update
 
 # Install required dependencies for armhf architecture
-sudo apt-get install -y libc6:armhf libgfortran5:armhf libgcc-s1:armhf gcc-12-base:armhf libidn2-0:armhf
+sudo apt-get install -y libc6:armhf libgfortran5:armhf libgcc-s1:armhf gcc-12-base:armhf libidn2-0:armhf libunistring2:armhf
 
 # Fix any broken dependencies
 sudo apt-get install -f -y
