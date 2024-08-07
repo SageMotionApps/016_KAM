@@ -1,8 +1,6 @@
 import os
 import sys
 
-third_party_path = os.path.abspath(os.path.join(__file__, "../third_party"))
-sys.path.insert(0, third_party_path)
 from sage.base_app import BaseApp
 import sklearn
 
@@ -14,8 +12,6 @@ else:
     from .gait_phase import GaitPhase
     from .knee_moments import MomentPrediction
     from .const import WAIT_PREDICTION, PREDICTION_DONE, R_FOOT
-sys.path.remove(third_party_path)
-
 
 class Core(BaseApp):
     ###########################################################
@@ -52,8 +48,6 @@ class Core(BaseApp):
             self.time_now += 0.01
             my_data = {
                 "time": [self.time_now],
-                "weight_kg": [self.weight_kg],
-                "height_meter": [self.height_meter],
                 "KAM": [kam],
                 "Stance_Flag": [stance_flag],
             }
