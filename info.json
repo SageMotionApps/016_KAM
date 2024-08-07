@@ -1,12 +1,12 @@
 {
   "user_guide_file": "KAM App Guide.pdf",
-  "app_name": "KAM",
-  "app_version": "1_0",
-  "app_id": "016",
-  "version_id": "01610",
+  "app_name": "KAM_new",
+  "app_version": "2_0",
+  "app_id": "0162",
+  "version_id": "016102",
   "validated_version_range": [
-    "3.10.0",
-    "4.1.0"
+    "4.4.1",
+    "3.4.9"
   ],
   "app_description": "Estimation of Knee Adduction Moment (KAM) from wearable IMUs during walking. Required: 7 <br> -Sensing (7): left foot (top of the foot, with switch pointing towards body), right foot (top of the foot, with switch pointing towards body), left shank (Midway between Femur Lateral Epicondyle and Fibula Apex of Lateral Malleolus), right shank (Midway between Femur Lateral Epicondyle and Fibula Apex of Lateral Malleolus), left thigh ( Midway between Femur Greater Trochanter and Femur Lateral Epicondyle), right thigh ( Midway between Femur Greater Trochanter and Femur Lateral Epicondyle), pelvis (Midway between Left and Right Anterior Superior Iliac Spine) ",
   "parameters_setting": [
@@ -51,16 +51,6 @@
   "user_fields": [
     {
       "name": "time",
-      "data_type": "float",
-      "size": 1
-    },
-    {
-      "name": "weight_kg",
-      "data_type": "float",
-      "size": 1
-    },
-    {
-      "name": "height_meter",
       "data_type": "float",
       "size": 1
     },
