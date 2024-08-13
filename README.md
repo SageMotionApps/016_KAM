@@ -1,4 +1,4 @@
-# 016 Knee Aduction Moment (KAM)
+# 016 Knee Adduction Moment (KAM)
 Estimation of Knee Adduction Moment (KAM) from wearable IMUs during walking. 
 
 ### Nodes Required: 7 
