@@ -48,7 +48,7 @@ For convenience, here is the BibTeX Citation:
 - time (sec): time since trial start
 - weight_kg: the users weight in kilograms as entered on the app configuration panel
 - height_meter: the users height in meters as entered on the app configuration panel
-- KAM: right knee aduction moment
+- KAM: right knee adduction moment
 - Stance Flag: 
   - 0 for swing phase or not walking
   - 1 for stance phase
