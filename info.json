@@ -2,8 +2,8 @@
   "user_guide_file": "KAM App Guide.pdf",
   "app_name": "KAM_new",
   "app_version": "2_0",
-  "app_id": "0162",
-  "version_id": "016102",
+  "app_id": "016",
+  "version_id": "01620",
   "validated_version_range": [
     "4.4.1",
     "3.4.9"
