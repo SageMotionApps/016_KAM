@@ -1,0 +1,17 @@
+{
+  "height": 1,
+  "last_connect_feedback": [],
+  "last_connect_sensors": [
+    "88:6B:0F:4F:7D:FB",
+    "88:6B:0F:4F:A0:C4",
+    "88:6B:0F:4F:A0:DD",
+    "88:6B:0F:4F:7D:FE",
+    "18:04:ED:EB:21:B1",
+    "18:04:ED:EB:23:A0",
+    "18:04:ED:E7:83:6C"
+  ],
+  "local_time": "2024-08-08-07-16-01",
+  "save_mode": "xlsx",
+  "trial_name": "KAM_trial_6",
+  "weight": 100
+}
