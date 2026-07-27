@@ -109,6 +109,10 @@ class LmfImuOnlyNet(torch.nn.Module):
         self.gyr_fields = x_fields["input_gyr"]
 
     def forward(self, acc_x, gyr_x, others, lens):
+        acc_x = acc_x.float()
+        gyr_x = gyr_x.float()
+        others = others.float()
+        
         acc_h = self.acc_subnet(acc_x, lens)
         gyr_h = self.gyr_subnet(gyr_x, lens)
         batch_size = acc_h.data.shape[0]
@@ -159,13 +163,29 @@ class MomentPrediction:
         ]
 
         base_path = os.path.abspath(os.path.dirname(__file__))
-        model_state_path = base_path + "/models/7IMU_FUSION40_LSTM20.pth"
+        model_state_path = os.path.join(base_path, "models", "7IMU_FUSION40_LSTM20.pth")
+        
         self.model = LmfImuOnlyNet(21, 21)
+   
+        self.model.load_state_dict(torch.load(model_state_path, weights_only=True))
+        
         self.model.eval()
-        self.model.load_state_dict(torch.load(model_state_path))
+        
         self.model.set_fields({"input_acc": ACC_ALL, "input_gyr": GYR_ALL})
-        scalar_path = base_path + "/models/scalars.pkl"
-        self.model.set_scalars(pickle.load(open(scalar_path, "rb")))
+        
+        scalar_path = os.path.join(base_path, "models", "scalars.pkl")
+        
+        # Load the scalars and handle the clip attribute
+        with open(scalar_path, "rb") as f:
+            scalars = pickle.load(f)
+        
+        if 'input_acc' in scalars and not hasattr(scalars['input_acc'], 'clip'):
+            scalars['input_acc'].clip = False
+        if 'input_gyr' in scalars and not hasattr(scalars['input_gyr'], 'clip'):
+            scalars['input_gyr'].clip = False
+
+        self.model.set_scalars(scalars)
+        
         self.model.acc_col_loc = [
             self.data_array_fields.index(field) for field in self.model.acc_fields
         ]
@@ -173,10 +193,11 @@ class MomentPrediction:
             self.data_array_fields.index(field) for field in self.model.gyr_fields
         ]
 
+
         self.weight = weight
         self.height = height
 
-        anthro_data = np.zeros([1, 152, 2], dtype=np.float32)
+        anthro_data = np.zeros([1, 152, 2], dtype=float)
         anthro_data[:, :, WEIGHT_LOC] = self.weight
         anthro_data[:, :, HEIGHT_LOC] = self.height
         self.model_inputs = {
@@ -208,7 +229,7 @@ class MomentPrediction:
                         inputs["others"],
                         inputs["step_length"],
                     )
-                    pred = pred.detach().numpy().astype(np.float)[0]
+                    pred = pred.detach().numpy().astype(float)[0]
                     for i_sample in range(step_length):
                         self.data_buffer[-step_length + i_sample][1:3] = [
                             pred[i_sample, 0],
@@ -236,7 +257,7 @@ class MomentPrediction:
                     [sample_data[0][i_sensor][field] for field in IMU_FIELDS]
                 )
             raw_data.append(raw_data_one_row)
-        data = np.array(raw_data, dtype=np.float32)
+        data = np.array(raw_data, dtype=float)
         data[:, self.model.acc_col_loc] = self.normalize_array_separately(
             data[:, self.model.acc_col_loc],
             self.model.scalars["input_acc"],
